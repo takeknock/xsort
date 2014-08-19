@@ -1,0 +1,28 @@
+{
+	"name": "xsort",
+	"version": "0.1",
+	"manifest_version":2,
+
+	"description":"change background color!",
+
+	"permissions":[
+		"tabs", "http://*/*"
+	],
+
+	"background":{
+		"scripts": ["jquery-1.11.1.min.js","background.js"]
+	},
+
+	"browser_action":{
+		"default_icon":"icon19.png",
+		"default_title":"xSort"
+	},
+
+	"content_scripts":[
+		{
+		"matches": ["http://*.xvideos.com/*"],
+		"js":["jquery-1.11.1.min.js","myscript.js"]
+		}
+	]
+
+}
