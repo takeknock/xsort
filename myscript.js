@@ -1,68 +1,56 @@
 //自動でquality95%超のもののうち、動画時間の一番長いものを自動的に再生する
+//TODO: クリック機能
+//TODO: browserAction化
+//TODO: browserAction実行するたびに、配列に入っている次の動画ページを表示する
 
-//var mid=[];
-//var mtime=[];
-var arry=[];
 const QUAL = 95;
 
 function getMaxId(){
+	var arry=[];
 	$("div.thumbBlock").each(function(){
 		var q = $(this).html().match(/([0-9]*)%/);
 		var id = $(this).attr("id");
 		var f = $(this).html().match(/duration">\(([0-9]*) ?([a-z]+).*\)/);
+		//f[2]=="h"ならtime[1]=h,time[3]=min
+		//otherwise, time[1]=min
 		var time = $(this).html().match(/duration">\(([0-9]*) ?([a-z]*) ?([0-9]*) ?([a-z]*).*\)/);
 		
 		if(f[2]=="h"){
-			//console.log("time: "+time);
-			//console.log("f: "+f[1]);
 			time[1] = parseInt(time[3]) + 60 * parseInt(f[1]);
-			//console.log("time:  "+time[1]);
 		}else{
 			time[1] = parseInt(time[1]);
-		}
-		
-		console.log("quality:" + q[1] + " id:" + id+" time:"+time[1]);
-		//console.log(q[1]=="100");
+		}		
+		//console.log("quality:" + q[1] + " id:" + id+" time:"+time[1]);
 		if(parseInt(q[1]) > QUAL){
-			//mid[mid.length] = id;
-			//mtime[mtime.length] = time[1];
 			arry.push([id,time[1]]);
 		}
 	});
+	return arry;
 }
 
-//getMaxId();
-//console.log(mid);
-//var target = $("#"+mid).html();
-//console.log(target);
 
-function jump(){
-	getMaxId();
-	//console.log(mid);
-	//console.log("#"+mid[0]);
-	//console.log("sort前: "+arry);
+function dsort(arry){
 	arry.sort(function(a,b){
 		return (a[1] > b[1])? -1 : 1;	
 	});
-	console.log("sort後: "+arry);
-	//$("div#"+mid[0]).click();
+	//console.log("sort後: "+arry);
 };
 
-jump();
 
-/*
-$("div.thumbBlock").each(function(){
-var time = $(this).html().match(/[0-9]+.*(min|sec)$/);
-var q = $(this).html().match(/[0-9]*%/);
-var id = $(this).attr("id");
-console.log("time: "+time+"  quality: " + q + "  id: " + id);
+
+
+var mid = getMaxId();
+dsort(mid);
+console.log(mid[0][0]);
+
+//auto click
+$("#"+mid[0][0]+" a").click(function(){
+	var href = $(this).attr("href");
+	location.href = href;
 });
-*/
-//var txt = $("span.bg").html();//.match(/^([0-9]).*%/);
-//var txt = $("span.bg").html().match(/[0-9]*%/);
-//txt = $("span.bg").html();
-//
-//alert(txt);
-//console.log(txt);
+$("#"+mid[0][0]).find("a").click();
+
+//$("#"+mid[0][0]).children().children().children("a").click();
+
 
 
