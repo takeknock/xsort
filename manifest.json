@@ -8,7 +8,7 @@
 	"permissions":[
 		"tabs", "http://*/*"
 	],
-
+/*
 	"background":{
 		"scripts": ["jquery-1.11.1.min.js","backgroung.js"]
 	},
@@ -17,7 +17,7 @@
 		"default_icon":"icon19.png",
 		"default_title":"xSort"
 	},
-
+*/
 	"content_scripts":[
 		{
 		"matches": ["http://*.xvideos.com/*"],
