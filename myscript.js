@@ -56,6 +56,7 @@ $("#"+mid[0][0]).find("a").click();
 
 //TODO: browserAction化。background.jsにmid送って、向こうで画面遷移実行
 //ひとまず、こちらのファイルに処理をまとめて、動くようにしてから、ファイル分割を試す。
+/*
 chrome.browserAction.onClicked.addListener(function(tab){
 	var mid = getMaxId();
 	dsort(mid);
@@ -64,4 +65,4 @@ chrome.browserAction.onClicked.addListener(function(tab){
 		code: '$("#"+mid[0][0]).find("a").click();'
 	});
 });
-
+*/
