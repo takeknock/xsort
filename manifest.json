@@ -10,19 +10,19 @@
 	],
 
 	"background":{
-		"scripts": ["jquery-1.11.1.min.js","myscript.js"]
+		"scripts": ["jquery-1.11.1.min.js","backgroung.js"]
 	},
 
 	"browser_action":{
 		"default_icon":"icon19.png",
 		"default_title":"xSort"
-	}
-/*
+	},
+
 	"content_scripts":[
 		{
 		"matches": ["http://*.xvideos.com/*"],
 		"js":["jquery-1.11.1.min.js","myscript.js"]
 		}
 	]
-*/
+
 }

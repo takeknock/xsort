@@ -50,7 +50,7 @@ $("#"+mid[0][0]+" a").click(function(){
 	var href = $(this).attr("href");
 	location.href = href;
 });
-//$("#"+mid[0][0]).find("a").click();
+$("#"+mid[0][0]).find("a").click();
 
 //$("#"+mid[0][0]).children().children().children("a").click();
 
