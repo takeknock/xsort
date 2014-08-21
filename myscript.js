@@ -1,6 +1,8 @@
 //自動でquality95%超のもののうち、動画時間の一番長いものを自動的に再生する
-//TODO: クリック機能
-//TODO: browserAction化
+
+//TODO: browserAction化（background.jsにmid送信し、向こうに画面遷移の処理書く）
+//まずは、1ファイルにまとめた状態で動くようにする（myscript.jsにまとめる）
+
 //TODO: browserAction実行するたびに、配列に入っている次の動画ページを表示する
 
 const QUAL = 95;
@@ -48,9 +50,18 @@ $("#"+mid[0][0]+" a").click(function(){
 	var href = $(this).attr("href");
 	location.href = href;
 });
-$("#"+mid[0][0]).find("a").click();
+//$("#"+mid[0][0]).find("a").click();
 
 //$("#"+mid[0][0]).children().children().children("a").click();
 
-
+//TODO: browserAction化。background.jsにmid送って、向こうで画面遷移実行
+//ひとまず、こちらのファイルに処理をまとめて、動くようにしてから、ファイル分割を試す。
+chrome.browserAction.onClicked.addListener(function(tab){
+	var mid = getMaxId();
+	dsort(mid);
+	console.log(mid[0][0]);
+	chrome.tabs.executeScript(null{
+		code: '$("#"+mid[0][0]).find("a").click();'
+	});
+});
 
